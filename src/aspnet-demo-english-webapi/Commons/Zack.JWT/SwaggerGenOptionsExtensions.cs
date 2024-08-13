@@ -5,15 +5,13 @@ using System.Collections.Generic;
 
 namespace Zack.JWT
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public static class SwaggerGenOptionsExtensions
     {
         /// <summary>
         /// 为Swagger增加Authentication报文头
         /// </summary>
-        /// <param name="c"></param>
+        /// <remarks>
+        /// </remarks>
         public static void AddAuthenticationHeader(this SwaggerGenOptions c)
         {
             c.AddSecurityDefinition("Authorization", new OpenApiSecurityScheme
