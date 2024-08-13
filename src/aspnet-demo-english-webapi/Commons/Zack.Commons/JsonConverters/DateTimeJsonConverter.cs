@@ -3,6 +3,10 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Zack.Commons.JsonConverters;
+
+/// <summary>
+/// 时间参数格式转换
+/// </summary>
 public class DateTimeJsonConverter : JsonConverter<DateTime>
 {
     private readonly string _dateFormatString;

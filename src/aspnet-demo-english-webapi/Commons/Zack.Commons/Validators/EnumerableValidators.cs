@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+// 跟IRuleBuilderOptions使用同一个命名空间，方便使用
+// ReSharper disable once CheckNamespace
 namespace FluentValidation;
+
 public static class EnumerableValidators
 {
     /// <summary>
@@ -13,7 +16,7 @@ public static class EnumerableValidators
     /// <returns></returns>
     public static IRuleBuilderOptions<T, IEnumerable<TItem>> NotDuplicated<T, TItem>(this IRuleBuilder<T, IEnumerable<TItem>> ruleBuilder)
     {
-        return ruleBuilder.Must(p => p == null || p.Distinct().Count() == p.Count());
+        return ruleBuilder.Must(p => p is null || p.Distinct().Count() == p.Count());
     }
 
     /// <summary>

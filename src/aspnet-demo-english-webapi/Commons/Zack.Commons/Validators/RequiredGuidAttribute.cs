@@ -1,4 +1,6 @@
-﻿namespace System.ComponentModel.DataAnnotations;
+﻿// ReSharper disable once CheckNamespace
+namespace System.ComponentModel.DataAnnotations;
+
 /// <summary>
 /// Value of Guid is not null nor Guid.Empty.
 /// On asp.net core, if there is a parameter of Guid type, and there is no value for it, the value is Guid.Empty, but [Required] doesn't take Guid.Empty as invalid,
@@ -10,20 +12,18 @@ public class RequiredGuidAttribute : ValidationAttribute
     public const string DefaultErrorMessage = "The {0} field is requird and not Guid.Empty";
     public RequiredGuidAttribute() : base(DefaultErrorMessage) { }
 
-    public override bool IsValid(object value)
+    public override bool IsValid(object? value)
     {
-        if (value is null)
+        switch (value)
         {
-            return false;
-        }
-        if (value is Guid)
-        {
-            Guid guid = (Guid)value;
-            return guid != Guid.Empty;
-        }
-        else
-        {
-            return false;
+            case null:
+                return false;
+            case Guid guid:
+            {
+                return guid != Guid.Empty;
+            }
+            default:
+                return false;
         }
     }
 }
