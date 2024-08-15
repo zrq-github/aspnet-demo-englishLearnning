@@ -55,6 +55,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaEncoder.Infrastructure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaEncoder.WebAPI", "MediaEncoder\MediaEncoder.WebAPI\MediaEncoder.WebAPI.csproj", "{EC24D936-4FE2-40A3-9CAA-5B279506ABEF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SearchService", "SearchService", "{80C75156-FEEB-4C53-BAF3-69C9A60F47D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchService.Domain", "SearchService\SearchService.Domain\SearchService.Domain.csproj", "{B9621B9E-32BF-44C8-8F7C-FA86512D2E3C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchService.Infrastructure", "SearchService\SearchService.Infrastructure\SearchService.Infrastructure.csproj", "{172BDC2A-DDC3-4E96-AC6B-AF26FA81ECCE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchService.WebAPI", "SearchService\SearchService.WebAPI\SearchService.WebAPI.csproj", "{BE71DEA9-9C24-4F64-A0C5-9839237C559B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -145,6 +153,18 @@ Global
 		{EC24D936-4FE2-40A3-9CAA-5B279506ABEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC24D936-4FE2-40A3-9CAA-5B279506ABEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC24D936-4FE2-40A3-9CAA-5B279506ABEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9621B9E-32BF-44C8-8F7C-FA86512D2E3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9621B9E-32BF-44C8-8F7C-FA86512D2E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9621B9E-32BF-44C8-8F7C-FA86512D2E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9621B9E-32BF-44C8-8F7C-FA86512D2E3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{172BDC2A-DDC3-4E96-AC6B-AF26FA81ECCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{172BDC2A-DDC3-4E96-AC6B-AF26FA81ECCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{172BDC2A-DDC3-4E96-AC6B-AF26FA81ECCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{172BDC2A-DDC3-4E96-AC6B-AF26FA81ECCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE71DEA9-9C24-4F64-A0C5-9839237C559B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE71DEA9-9C24-4F64-A0C5-9839237C559B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE71DEA9-9C24-4F64-A0C5-9839237C559B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE71DEA9-9C24-4F64-A0C5-9839237C559B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -171,6 +191,9 @@ Global
 		{A4FA368F-5300-458E-8AC3-23FBBC23C58A} = {DD139B41-1E19-4BF3-81D7-CAAA856460C3}
 		{93DF6CDE-96E2-4DFF-A3A7-8A5F791B8CDC} = {DD139B41-1E19-4BF3-81D7-CAAA856460C3}
 		{EC24D936-4FE2-40A3-9CAA-5B279506ABEF} = {DD139B41-1E19-4BF3-81D7-CAAA856460C3}
+		{B9621B9E-32BF-44C8-8F7C-FA86512D2E3C} = {80C75156-FEEB-4C53-BAF3-69C9A60F47D5}
+		{172BDC2A-DDC3-4E96-AC6B-AF26FA81ECCE} = {80C75156-FEEB-4C53-BAF3-69C9A60F47D5}
+		{BE71DEA9-9C24-4F64-A0C5-9839237C559B} = {80C75156-FEEB-4C53-BAF3-69C9A60F47D5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F04B9B2C-4344-4AD8-9C56-8CBACC3F4537}
