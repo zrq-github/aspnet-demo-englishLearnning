@@ -13,7 +13,7 @@ namespace DBConfig.Options
         {
             return new ElasticSearchOptions()
             {
-               Uri = null,
+               Uri = new Uri("http://localhost:9200/"),
             };
         }
     }
