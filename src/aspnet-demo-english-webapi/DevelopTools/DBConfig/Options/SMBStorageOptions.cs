@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,7 @@ public class SMBStorageOptions
 {
     public string WorkingDir { get; set; } = string.Empty;
 
-    public SMBStorageOptions Init()
+    public static SMBStorageOptions Init()
     {
         return new SMBStorageOptions()
         {

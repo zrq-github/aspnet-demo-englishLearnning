@@ -1,4 +1,4 @@
-﻿using CommonInitializer;
+using CommonInitializer;
 using FileService.Infrastructure;
 using FileService.Infrastructure.Services;
 using Microsoft.AspNetCore.Cors.Infrastructure;
@@ -21,6 +21,8 @@ internal class Program
         ctx.DbConfigEntities.Add(CreateFileServiceSMBEntity());
         ctx.DbConfigEntities.Add(CreateFileServiceEndpointEntity());
         ctx.DbConfigEntities.Add(CreateRedisOptions());
+        ctx.DbConfigEntities.Add(CreateRabbitMQ());
+        ctx.DbConfigEntities.Add(CreateElasticSearchOptions());
         ctx.DbConfigEntities.Add(CreateRabbitMQ());
 
         Console.WriteLine("Hello, World!");

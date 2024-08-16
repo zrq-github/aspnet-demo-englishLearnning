@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +10,12 @@ namespace DBConfig.Options
     {
         public string ConnStr { get; set; }
 
-        public static RedisOptions InitOptions()
+        public static RedisOptions Init()
         {
             RedisOptions redisOptions = new RedisOptions()
             {
-                ConnStr = "localhost"
+                // docker redis 6379 为默认端口
+                ConnStr = "localhost:6379"
             };
             return redisOptions;
         }
