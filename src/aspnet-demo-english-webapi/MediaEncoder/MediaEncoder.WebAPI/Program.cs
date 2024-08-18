@@ -8,10 +8,10 @@ using Zack.JWT;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.ConfigureDbConfiguration();
+builder.ConfigureDbConfiguration();  
 builder.ConfigureExtraServices(new InitializerOptions
 {
-    LogFilePath = "e:/temp/MediaEncoder.log",
+    LogFilePath = Path.Combine(Path.GetTempPath(),"aspnet-demo", "MediaEncoder.log"),
     EventBusQueueName = "MediaEncoder.WebAPI"
 });
 builder.Services.Configure<FileServiceOptions>(builder.Configuration.GetSection("FileService:Endpoint"));
