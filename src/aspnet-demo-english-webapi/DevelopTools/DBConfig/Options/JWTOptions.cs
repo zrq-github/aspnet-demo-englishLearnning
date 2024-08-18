@@ -20,7 +20,10 @@ namespace DBConfig.Options
             // todo JWT 系统环境配置
             return new JWTOptions()
             {
-
+                Issuer = "myIssuer",
+                Audience ="myAudience",
+                Key="qwertyuiop~@#$1234",
+                ExpireSeconds="31536000"
             };
         }
     }

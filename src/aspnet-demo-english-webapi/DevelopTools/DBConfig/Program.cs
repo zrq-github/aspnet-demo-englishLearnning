@@ -1,10 +1,8 @@
 using CommonInitializer;
 using FileService.Infrastructure;
-using FileService.Infrastructure.Services;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using MediaEncoder.WebAPI.Options;
 using DBConfig.Options;
 
 namespace DBConfig;
@@ -23,7 +21,9 @@ internal class Program
         ctx.DbConfigEntities.Add(CreateRedisOptions());
         ctx.DbConfigEntities.Add(CreateRabbitMQ());
         ctx.DbConfigEntities.Add(CreateElasticSearchOptions());
-        ctx.DbConfigEntities.Add(CreateRabbitMQ());
+        ctx.DbConfigEntities.Add(CreateJWTOption());
+
+        await ctx.SaveChangesAsync();
 
         Console.WriteLine("Hello, World!");
     }
@@ -47,13 +47,6 @@ internal class Program
 
     private static DBConfigEntity CreateFileServiceEndpointEntity()
     {
-        var entities = ctx.DbConfigEntities.Where(p => p.Name.Equals("FileService:Endpoint"));
-        if (entities.Any())
-        {
-            Console.WriteLine("FileServiceEndpoint is exist");
-            return;
-        }
-
         var entity = new DBConfigEntity();
         entity.Name = "FileServices:Endpoint";
         entity.Value = JsonSerializer.Serialize(FsEndPointOptions.Init());
@@ -90,4 +83,13 @@ internal class Program
         return entity;
     }
 
+    private static DBConfigEntity CreateJWTOption()
+    {
+        var entity = new DBConfigEntity
+        {
+            Name = "JWT",
+            Value = JsonSerializer.Serialize(JWTOptions.Init())
+        };
+        return entity;
+    }
 }
