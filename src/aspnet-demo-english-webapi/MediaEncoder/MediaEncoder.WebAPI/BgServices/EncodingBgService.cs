@@ -32,7 +32,7 @@ public class EncodingBgService : BackgroundService
     private readonly ITokenService tokenService;
 
     public EncodingBgService(IServiceScopeFactory spf)
-    {
+   {
         //MEDbContext等是Scoped，而BackgroundService是Singleton，所以不能直接注入，需要手动开启一个新的Scope
         this.serviceScope = spf.CreateScope();
         var sp = serviceScope.ServiceProvider;

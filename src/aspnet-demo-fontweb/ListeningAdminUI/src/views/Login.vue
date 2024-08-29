@@ -32,23 +32,8 @@ export default {
         "password": state.password,
       };
 
-      axios.post(`${apiRoot}/IdentityService/Login/LoginByUserNameAndPwd`,data)
-      .then(
-        function (response)
-        {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-
-      const jwtToken = await axios.post(`${apiRoot}/IdentityService/Login/LoginByUserNameAndPwd`,data)
-      .then(
-        function (response)
-        {
-          console.log(response);
-        }
-      );
+      const jwtToken = await axios.post(`${apiRoot}/IdentityService/Login/LoginByUserNameAndPwd`,data);
+      
       axios.defaults.headers.common['Authorization']="Bearer "+jwtToken.data;
       VueCookieNext.setCookie("Authorization","Bearer "+jwtToken.data);//Authorization保存到cookie中，这样刷新或者退出后仍然能用
       router.push({name:'AdminUserList'});
