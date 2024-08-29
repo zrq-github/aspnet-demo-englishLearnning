@@ -48,7 +48,7 @@ internal class Program
     private static DBConfigEntity CreateFileServiceEndpointEntity()
     {
         var entity = new DBConfigEntity();
-        entity.Name = "FileServices:Endpoint";
+        entity.Name = "FileService:Endpoint";
         entity.Value = JsonSerializer.Serialize(FsEndPointOptions.Init());
         return entity;
     }
