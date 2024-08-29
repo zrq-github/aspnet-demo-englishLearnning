@@ -8,12 +8,12 @@ namespace DBConfig.Options
 {
     public class ElasticSearchOptions
     {
-        public System.Uri?  Uri { get; set; }
+        public System.Uri?  Url { get; set; }
         public static ElasticSearchOptions Init()
         {
             return new ElasticSearchOptions()
             {
-               Uri = new Uri("http://localhost:9200/"),
+               Url = new Uri("http://localhost:9200/"),
             };
         }
     }

@@ -8,12 +8,12 @@ namespace DBConfig.Options
 {
     public class FsEndPointOptions
     {
-        public System.Uri? UriRoot { get;private set; }
+        public System.Uri? UrlRoot { get;private set; }
         public static FsEndPointOptions Init()
         {
             return new FsEndPointOptions()
             {
-                UriRoot = new Uri("http://localhost/FileService"),
+                UrlRoot = new Uri("http://localhost/FileService"),
             };
         }
     }
