@@ -24,7 +24,11 @@ public class UploaderController : ControllerBase
     /// <summary>
     /// 检查是否有和指定的大小和SHA256完全一样的文件
     /// </summary>
-    /// <param name="request"></param>
+    /// <remarks>
+    /// 通过查询数据库，判断文件是否存在
+    /// </remarks>
+    /// <param name="fileSize">文件大小，文件是否存在的判断之一</param>
+    /// <param name="sha256Hash">文件的sha256Hash，文件是否存在的判断之一</param>
     /// <returns></returns>
     [HttpGet]
     public async Task<FileExistsResponse> FileExists(long fileSize, string sha256Hash)

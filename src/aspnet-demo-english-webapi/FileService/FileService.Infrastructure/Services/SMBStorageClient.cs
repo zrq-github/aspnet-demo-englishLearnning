@@ -22,18 +22,24 @@ namespace FileService.Infrastructure.Services
             {
                 throw new ArgumentException("key should not start with /", nameof(key));
             }
+
             string workingDir = options.Value.WorkingDir;
             string fullPath = Path.Combine(workingDir, key);
             string? fullDir = Path.GetDirectoryName(fullPath);//get the directory
-            if (!Directory.Exists(fullDir))//automatically create dir
+
+            // create dir if dir no exist 
+            if (!Directory.Exists(fullDir))
             {
                 Directory.CreateDirectory(fullDir);
             }
-            if (File.Exists(fullPath))//如果已经存在，则尝试删除
+
+            // 如果文件存在，则删除重新复制
+            if (File.Exists(fullPath))
             {
                 File.Delete(fullPath);
             }
-            using Stream outStream = File.OpenWrite(fullPath);
+
+            await using Stream outStream = File.OpenWrite(fullPath);
             await content.CopyToAsync(outStream, cancellationToken);
             return new Uri(fullPath);
         }

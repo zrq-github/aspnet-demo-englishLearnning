@@ -5,6 +5,9 @@ namespace FileService.Domain.Entities
 {
     public record UploadedItem : BaseEntity, IHasCreationTime
     {
+        /// <summary>
+        /// 上传时间
+        /// </summary>
         public DateTime CreationTime { get; private set; }
 
         /// <summary>
@@ -34,7 +37,16 @@ namespace FileService.Domain.Entities
         /// </summary>
         public Uri RemoteUrl { get; private set; }
 
-
+        /// <summary>
+        /// 创建上传项目
+        /// </summary>
+        /// <param name="id"><see cref="BaseEntity.Id"/></param>
+        /// <param name="fileSizeInBytes"><see cref="UploadedItem.FileSizeInBytes"/></param>
+        /// <param name="fileName"><see cref="UploadedItem.FileName"/></param>
+        /// <param name="fileSHA256Hash"><see cref="UploadedItem.FileSHA256Hash"/></param>
+        /// <param name="backupUrl"><see cref="UploadedItem.BackupUrl"/></param>
+        /// <param name="remoteUrl"><see cref="UploadedItem.RemoteUrl"/></param>
+        /// <returns></returns>
         public static UploadedItem Create(Guid id, long fileSizeInBytes, string fileName, string fileSHA256Hash, Uri backupUrl, Uri remoteUrl)
         {
             UploadedItem item = new UploadedItem()
