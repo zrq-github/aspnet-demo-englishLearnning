@@ -2,6 +2,9 @@
 
 namespace IdentityService.Domain
 {
+    /// <summary>
+    /// 用户表操作接口
+    /// </summary>
     public interface IIdRepository
     {
         Task<User?> FindByIdAsync(Guid userId);//根据Id获取用户

@@ -27,6 +27,10 @@ public class UserAdminController : ControllerBase
         this.repository = repository;
     }
 
+    /// <summary>
+    /// 找到所有用户
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public Task<UserDTO[]> FindAllUsers()
     {
@@ -41,6 +45,10 @@ public class UserAdminController : ControllerBase
         return UserDTO.Create(user);
     }
 
+    /// <summary>
+    /// 添加管理员用户
+    /// </summary>
+    /// <returns></returns>
     [Authorize(Roles = "Admin")]
     [HttpPost]
     public async Task<ActionResult> AddAdminUser(AddAdminUserRequest req)
@@ -59,6 +67,10 @@ public class UserAdminController : ControllerBase
         return Ok();
     }
 
+    /// <summary>
+    /// 删除管理员用户
+    /// </summary>
+    /// <returns></returns>
     [HttpDelete]
     [Route("{id}")]
     public async Task<ActionResult> DeleteAdminUser(Guid id)
@@ -67,6 +79,10 @@ public class UserAdminController : ControllerBase
         return Ok();
     }
 
+    /// <summary>
+    /// 编辑管理员用户
+    /// </summary>
+    /// <returns></returns>
     [HttpPut]
     [Route("{id}")]
     public async Task<ActionResult> UpdateAdminUser(Guid id, EditAdminUserRequest req)
@@ -81,6 +97,10 @@ public class UserAdminController : ControllerBase
         return Ok();
     }
 
+    /// <summary>
+    /// 充值管理员密码
+    /// </summary>
+    /// <returns></returns>
     [HttpPost]
     [Route("{id}")]
     public async Task<ActionResult> ResetAdminUserPassword(Guid id)

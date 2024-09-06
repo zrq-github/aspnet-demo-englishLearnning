@@ -6,6 +6,9 @@ using Zack.JWT;
 
 namespace IdentityService.Infrastructure
 {
+    /// <summary>
+    /// 用户领域服务
+    /// </summary>
     public class IdDomainService
     {
         private readonly IIdRepository repository;
@@ -20,6 +23,10 @@ namespace IdentityService.Infrastructure
             this.optJWT = optJWT;
         }
 
+        /// <summary>
+        /// 检查用户名和密码是否正确
+        /// </summary>
+        /// <returns></returns>
         private async Task<SignInResult> CheckUserNameAndPwdAsync(string userName, string password)
         {
             var user = await repository.FindByNameAsync(userName);
@@ -31,6 +38,11 @@ namespace IdentityService.Infrastructure
             var result = await repository.CheckForSignInAsync(user, password, true);
             return result;
         }
+
+        /// <summary>
+        /// 检查手机号与密码是否正确
+        /// </summary>
+        /// <returns></returns>
         private async Task<SignInResult> CheckPhoneNumAndPwdAsync(string phoneNum, string password)
         {
             var user = await repository.FindByPhoneNumberAsync(phoneNum);
@@ -42,7 +54,13 @@ namespace IdentityService.Infrastructure
             return result;
         }
 
-        //<(SignInResult Result, string? Token)>  元组的语法
+        /// <summary>
+        /// 使用手机号与密码登录
+        /// </summary>
+        /// <remarks>
+        /// (SignInResult Result, string? Token)  元组的语法
+        /// </remarks>
+        /// <returns></returns>
         public async Task<(SignInResult Result, string? Token)> LoginByPhoneAndPwdAsync(string phoneNum, string password)
         {
             var checkResult = await CheckPhoneNumAndPwdAsync(phoneNum, password);
@@ -58,6 +76,10 @@ namespace IdentityService.Infrastructure
             }
         }
 
+        /// <summary>
+        /// 使用用户名与密码登录
+        /// </summary>
+        /// <returns></returns>
         public async Task<(SignInResult Result, string? Token)> LoginByUserNameAndPwdAsync(string userName, string password)
         {
             var checkResult = await CheckUserNameAndPwdAsync(userName, password);

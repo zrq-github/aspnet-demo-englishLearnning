@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IdentityService.Infrastructure
 {
+    /// <summary>
+    /// 用户数据库
+    /// </summary>
     public class IdDbContext : IdentityDbContext<User, Role, Guid>
     {
         public IdDbContext(DbContextOptions<IdDbContext> options)

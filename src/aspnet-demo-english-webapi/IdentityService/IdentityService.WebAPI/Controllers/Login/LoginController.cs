@@ -22,6 +22,10 @@ public class LoginController : ControllerBase
         this.repository = repository;
     }
 
+    /// <summary>
+    /// 创建一个初始账号
+    /// </summary>
+    /// <returns></returns>
     [HttpPost]
     [AllowAnonymous]
     public async Task<ActionResult> CreateWorld()
@@ -43,6 +47,10 @@ public class LoginController : ControllerBase
         return Ok();
     }
 
+    /// <summary>
+    /// 得到用户信息
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     [Authorize]
     public async Task<ActionResult<UserResponse>> GetUserInfo()
@@ -60,6 +68,10 @@ public class LoginController : ControllerBase
 
     //书中的项目只提供根据用户名登录的功能，以及管理员增删改查，像用户主动注册、手机验证码登录等功能都不弄。
 
+    /// <summary>
+    /// 使用手机号和密码进行登录
+    /// </summary>
+    /// <returns></returns>
     [AllowAnonymous]
     [HttpPost]
     public async Task<ActionResult<string?>> LoginByPhoneAndPwd(LoginByPhoneAndPwdRequest req)
@@ -82,6 +94,11 @@ public class LoginController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// 使用账号和密码进行登录
+    /// </summary>
+    /// <param name="req"></param>
+    /// <returns></returns>
     [AllowAnonymous]
     [HttpPost]
     public async Task<ActionResult<string>> LoginByUserNameAndPwd(
@@ -98,6 +115,10 @@ public class LoginController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// 改变自己的密码
+    /// </summary>
+    /// <returns></returns>
     [HttpPost]
     [Authorize]
     public async Task<ActionResult> ChangeMyPassword(ChangeMyPasswordRequest req)

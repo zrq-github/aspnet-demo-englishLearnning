@@ -6,6 +6,9 @@ using System.Text;
 
 namespace IdentityService.Infrastructure
 {
+    /// <summary>
+    /// 领域数据库操作实现类
+    /// </summary>
     class IdRepository : IIdRepository
     {
         private readonly IdUserManager userManager;
@@ -160,7 +163,6 @@ namespace IdentityService.Infrastructure
         /// <summary>
         /// 软删除
         /// </summary>
-        /// <param name="id"></param>
         /// <returns></returns>
         public async Task<IdentityResult> RemoveUserAsync(Guid id)
         {
