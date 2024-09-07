@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.ConfigureDbConfiguration();
 builder.ConfigureExtraServices(new InitializerOptions
 {
-    LogFilePath = "e:/temp/Listening.Main.log",
+    LogFilePath = @"C:/Dev/aspnet-demo/Listening.Main.log",
     EventBusQueueName = "Listening.Main"
 });
 // Add services to the container.

@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.ConfigureDbConfiguration();
 builder.ConfigureExtraServices(new InitializerOptions
 {
-    LogFilePath = "e:/temp/FileService.log",
+    LogFilePath = @"C:/Dev/aspnet-demo/FileService.log",
     EventBusQueueName = "FileService.WebAPI",
 });
 

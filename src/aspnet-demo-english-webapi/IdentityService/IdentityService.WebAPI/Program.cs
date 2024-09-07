@@ -15,7 +15,7 @@ builder.ConfigureDbConfiguration();
 builder.ConfigureExtraServices(new InitializerOptions
 {
     EventBusQueueName = "IdentityService.WebAPI",
-    LogFilePath = "e:/temp/IdentityService.log"
+    LogFilePath = @"C:/Dev/aspnet-demo/IdentityService.log",
 });
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>

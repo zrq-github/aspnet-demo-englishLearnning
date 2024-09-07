@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.ConfigureDbConfiguration();
 builder.ConfigureExtraServices(new InitializerOptions
 {
-    LogFilePath = "e:/temp/Listening.Admin.log",
+    LogFilePath = @"C:/Dev/aspnet-demo/Listening.Admin.log",
     EventBusQueueName = "Listening.Admin"
 });
 builder.Services.AddScoped<EncodingEpisodeHelper>();
