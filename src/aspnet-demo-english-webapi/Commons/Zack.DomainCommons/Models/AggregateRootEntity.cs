@@ -2,6 +2,9 @@
 
 namespace Zack.DomainCommons.Models
 {
+    /// <summary>
+    /// 聚合实体
+    /// </summary>
     public record AggregateRootEntity : BaseEntity, IAggregateRoot, ISoftDelete, IHasCreationTime, IHasDeletionTime, IHasModificationTime
     {
         public bool IsDeleted { get; private set; }

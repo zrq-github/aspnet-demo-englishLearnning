@@ -2,6 +2,9 @@
 
 namespace Listening.Domain.Entities
 {
+    /// <summary>
+    /// 分类
+    /// </summary>
     public record Category : AggregateRootEntity, IAggregateRoot
     {
         private Category() { }
@@ -13,8 +16,9 @@ namespace Listening.Domain.Entities
         public MultilingualString Name { get; private set; }
 
         /// <summary>
-        /// 封面图片。现在一般都不会直接把图片保存到数据库中（Blob），而是只是保存图片的路径。
+        /// 封面图片
         /// </summary>
+        /// <remarks>现在一般都不会直接把图片保存到数据库中（Blob），而是只是保存图片的路径。</remarks>
         public Uri CoverUrl { get; private set; }
 
         public static Category Create(Guid id, int sequenceNumber, MultilingualString name, Uri coverUrl)

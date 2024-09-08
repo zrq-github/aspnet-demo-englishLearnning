@@ -4,16 +4,38 @@ using Listening.Domain.ValueObjects;
 using Zack.DomainCommons.Models;
 
 namespace Listening.Domain.Entities;
+
 //EF Core中的实体和DDD的中的实体不一样。DDD中的实体是Data Object，是和数据库表以及字段一一对应的，EF Core中的实体更像领域模型，DO是藏在EF Core框架中的。
 //网站上线后，又提出来一个需求“非m4a文件上传后先转码再发布”，如果用面向数据库的开发，就要在Episode表搞一个字段“表示”是否已发布，在发布之前，AudioUrl等属性都是无效的
 //按照DDD的思想，就额外拆分出一个“待发布Episode”，转换完成后，再把“待发布Episode”的数据导入Episode，这样就不用对Episode实体做改变。
+
+/// <summary>
+/// 音频
+/// </summary>
 public record Episode : AggregateRootEntity, IAggregateRoot
 {
     private Episode() { }
-    public int SequenceNumber { get; private set; }//序号
-    public MultilingualString Name { get; private set; }//标题
-    public Guid AlbumId { get; private set; }//专辑Id，因为Episode和Album都是聚合根，因此不能直接做对象引用。
-    public Uri AudioUrl { get; private set; }//音频路径
+
+    /// <summary>
+    /// 序号
+    /// </summary>
+    /// <remarks>在列表中的排序</remarks>
+    public int SequenceNumber { get; private set; }
+    /// <summary>
+    /// 标题
+    /// </summary>
+    public MultilingualString Name { get; private set; }
+    /// <summary>
+    /// 专辑ID
+    /// </summary>
+    /// <remarks>
+    /// Episode和Album都是聚合根，因此不能直接做对象引用。
+    /// </remarks>
+    public Guid AlbumId { get; private set; }
+    /// <summary>
+    /// 音频路径
+    /// </summary>
+    public Uri AudioUrl { get; private set; }
 
     /// <summary>
     ///这是音频的实际长度（秒）
@@ -25,8 +47,15 @@ public record Episode : AggregateRootEntity, IAggregateRoot
     public double DurationInSecond { get; private set; }//音频时长（秒数）
 
     //因为启用了<Nullable>enable</Nullable>，所以string是不可空，Migration会默认这个，string?是可空
-    public string Subtitle { get; private set; }//原文字幕内容
-    public string SubtitleType { get; private set; }//原文字幕格式
+
+    /// <summary>
+    /// 原文字幕内容
+    /// </summary>
+    public string Subtitle { get; private set; }
+    /// <summary>
+    /// 原文字幕格式
+    /// </summary>
+    public string SubtitleType { get; private set; }
 
     /// <summary>
     /// 用户是否可见（如果发现内部有问题，就先隐藏）

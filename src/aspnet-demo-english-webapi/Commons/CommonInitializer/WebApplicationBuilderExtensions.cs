@@ -10,6 +10,7 @@ using Serilog;
 using StackExchange.Redis;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Data.SqlClient;
+using System.Reflection;
 using Zack.ASPNETCore;
 using Zack.Commons;
 using Zack.Commons.JsonConverters;
@@ -18,8 +19,15 @@ using Zack.JWT;
 
 namespace CommonInitializer
 {
+    /// <summary>
+    /// 网页服务应用统一配置
+    /// </summary>
     public static class WebApplicationBuilderExtensions
     {
+        /// <summary>
+        /// 配置数据库连接路径
+        /// </summary>
+        /// <param name="builder"></param>
         public static void ConfigureDbConfiguration(this WebApplicationBuilder builder)
         {
             builder.Host.ConfigureAppConfiguration((hostCtx, configBuilder) =>
@@ -32,11 +40,19 @@ namespace CommonInitializer
             });
         }
 
+        /// <summary>
+        /// 配置额外的服务
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="initOptions"></param>
+        /// <remarks>
+        /// 
+        /// </remarks>
         public static void ConfigureExtraServices(this WebApplicationBuilder builder, InitializerOptions initOptions)
         {
             IServiceCollection services = builder.Services;
             IConfiguration configuration = builder.Configuration;
-            var assemblies = ReflectionHelper.GetAllReferencedAssemblies();
+            IEnumerable<Assembly> assemblies = ReflectionHelper.GetAllReferencedAssemblies();
             services.RunModuleInitializers(assemblies);
             services.AddAllDbContexts(ctx =>
             {
@@ -47,11 +63,12 @@ namespace CommonInitializer
                 ctx.UseSqlServer(connStr);
             }, assemblies);
 
-            //开始:Authentication,Authorization
+            #region Authentication,Authorization
             //只要需要校验Authentication报文头的地方（非IdentityService.WebAPI项目）也需要启用这些
             //IdentityService项目还需要启用AddIdentityCore
             builder.Services.AddAuthorization();
             builder.Services.AddAuthentication();
+
             JWTOptions jwtOpt = configuration.GetSection("JWT").Get<JWTOptions>();
             builder.Services.AddJWTAuthentication(jwtOpt);
             //启用Swagger中的【Authorize】按钮。这样就不用每个项目的AddSwaggerGen中单独配置了
@@ -59,7 +76,7 @@ namespace CommonInitializer
             {
                 c.AddAuthenticationHeader();
             });
-            //结束:Authentication,Authorization
+            #endregion
 
             services.AddMediatR(assemblies);
             //现在不用手动AddMVC了，因此把文档中的services.AddMvc(options =>{})改写成Configure<MvcOptions>(options=> {})这个问题很多都类似

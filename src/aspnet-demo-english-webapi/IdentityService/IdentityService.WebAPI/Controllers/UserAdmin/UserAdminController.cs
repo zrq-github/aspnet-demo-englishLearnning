@@ -16,15 +16,15 @@ namespace IdentityService.WebAPI.Controllers.UserAdmin;
 [Authorize(Roles = "Admin")]
 public class UserAdminController : ControllerBase
 {
-    private readonly IdUserManager userManager;
-    private readonly IIdRepository repository;
-    private readonly IEventBus eventBus;
+    private readonly IdUserManager _userManager;
+    private readonly IIdRepository _repository;
+    private readonly IEventBus _eventBus;
 
     public UserAdminController(IdUserManager userManager, IEventBus eventBus, IIdRepository repository)
     {
-        this.userManager = userManager;
-        this.eventBus = eventBus;
-        this.repository = repository;
+        this._userManager = userManager;
+        this._eventBus = eventBus;
+        this._repository = repository;
     }
 
     /// <summary>
@@ -34,14 +34,14 @@ public class UserAdminController : ControllerBase
     [HttpGet]
     public Task<UserDTO[]> FindAllUsers()
     {
-        return userManager.Users.Select(u => UserDTO.Create(u)).ToArrayAsync();
+        return _userManager.Users.Select(u => UserDTO.Create(u)).ToArrayAsync();
     }
 
     [HttpGet]
     [Route("{id}")]
     public async Task<UserDTO> FindById(Guid id)
     {
-        var user = await userManager.FindByIdAsync(id.ToString());
+        var user = await _userManager.FindByIdAsync(id.ToString());
         return UserDTO.Create(user);
     }
 
@@ -53,7 +53,7 @@ public class UserAdminController : ControllerBase
     [HttpPost]
     public async Task<ActionResult> AddAdminUser(AddAdminUserRequest req)
     {
-        (var result, var user, var password) = await repository
+        (var result, var user, var password) = await _repository
             .AddAdminUserAsync(req.UserName, req.PhoneNum);
         if (!result.Succeeded)
         {
@@ -63,7 +63,7 @@ public class UserAdminController : ControllerBase
         //可以同时或者选择性的把新增用户的密码短信/邮件/打印给用户
         //体现了领域事件对于代码“高内聚、低耦合”的追求
         var userCreatedEvent = new UserCreatedEvent(user.Id, req.UserName, password, req.PhoneNum);
-        eventBus.Publish("IdentityService.User.Created", userCreatedEvent);
+        _eventBus.Publish("IdentityService.User.Created", userCreatedEvent);
         return Ok();
     }
 
@@ -75,7 +75,7 @@ public class UserAdminController : ControllerBase
     [Route("{id}")]
     public async Task<ActionResult> DeleteAdminUser(Guid id)
     {
-        await repository.RemoveUserAsync(id);
+        await _repository.RemoveUserAsync(id);
         return Ok();
     }
 
@@ -87,13 +87,13 @@ public class UserAdminController : ControllerBase
     [Route("{id}")]
     public async Task<ActionResult> UpdateAdminUser(Guid id, EditAdminUserRequest req)
     {
-        var user = await repository.FindByIdAsync(id);
+        var user = await _repository.FindByIdAsync(id);
         if (user == null)
         {
             return NotFound("用户没找到");
         }
         user.PhoneNumber = req.PhoneNum;
-        await userManager.UpdateAsync(user);
+        await _userManager.UpdateAsync(user);
         return Ok();
     }
 
@@ -105,14 +105,14 @@ public class UserAdminController : ControllerBase
     [Route("{id}")]
     public async Task<ActionResult> ResetAdminUserPassword(Guid id)
     {
-        (var result, var user, var password) = await repository.ResetPasswordAsync(id);
+        (var result, var user, var password) = await _repository.ResetPasswordAsync(id);
         if (!result.Succeeded)
         {
             return BadRequest(result.Errors.SumErrors());
         }
         //生成的密码短信发给对方
         var eventData = new ResetPasswordEvent(user.Id, user.UserName, password, user.PhoneNumber);
-        eventBus.Publish("IdentityService.User.PasswordReset", eventData);
+        _eventBus.Publish("IdentityService.User.PasswordReset", eventData);
         return Ok();
     }
 }

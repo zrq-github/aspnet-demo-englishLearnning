@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 
 namespace Listening.Domain
 {
+    /// <summary>
+    /// 听力仓库
+    /// </summary>
     public interface IListeningRepository
     {
         public Task<Category?> GetCategoryByIdAsync(Guid categoryId);

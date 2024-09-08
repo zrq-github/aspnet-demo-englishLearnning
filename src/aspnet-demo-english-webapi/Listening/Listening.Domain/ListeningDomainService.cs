@@ -6,23 +6,23 @@ namespace Listening.Domain
 {
     public class ListeningDomainService
     {
-        private readonly IListeningRepository repository;
+        private readonly IListeningRepository _repository;
 
         public ListeningDomainService(IListeningRepository repository)
         {
-            this.repository = repository;
+            this._repository = repository;
         }
 
         public async Task<Album> AddAlbumAsync(Guid categoryId, MultilingualString name)
         {
-            int maxSeq = await repository.GetMaxSeqOfAlbumsAsync(categoryId);
+            int maxSeq = await _repository.GetMaxSeqOfAlbumsAsync(categoryId);
             var id = Guid.NewGuid();
             return Album.Create(id, maxSeq + 1, name, categoryId);
         }
 
         public async Task SortAlbumsAsync(Guid categoryId, Guid[] sortedAlbumIds)
         {
-            var albums = await repository.GetAlbumsByCategoryIdAsync(categoryId);
+            var albums = await _repository.GetAlbumsByCategoryIdAsync(categoryId);
             var idsInDB = albums.Select(a => a.Id);
             if (!idsInDB.SequenceIgnoredEqual(sortedAlbumIds))
             {
@@ -33,7 +33,7 @@ namespace Listening.Domain
             //一个in语句一次性取出来更快，不过在非性能关键节点，业务语言比性能更重要
             foreach (Guid albumId in sortedAlbumIds)
             {
-                var album = await repository.GetAlbumByIdAsync(albumId);
+                var album = await _repository.GetAlbumByIdAsync(albumId);
                 if (album == null)
                 {
                     throw new Exception($"albumId={albumId}不存在");
@@ -45,14 +45,14 @@ namespace Listening.Domain
 
         public async Task<Category> AddCategoryAsync(MultilingualString name, Uri coverUrl)
         {
-            int maxSeq = await repository.GetMaxSeqOfCategoriesAsync();
+            int maxSeq = await _repository.GetMaxSeqOfCategoriesAsync();
             var id = Guid.NewGuid();
             return Category.Create(id, maxSeq + 1, name, coverUrl);
         }
 
         public async Task SortCategoriesAsync(Guid[] sortedCategoryIds)
         {
-            var categories = await repository.GetCategoriesAsync();
+            var categories = await _repository.GetCategoriesAsync();
             var idsInDB = categories.Select(a => a.Id);
             if (!idsInDB.SequenceIgnoredEqual(sortedCategoryIds))
             {
@@ -62,7 +62,7 @@ namespace Listening.Domain
             //一个in语句一次性取出来更快，不过在非性能关键节点，业务语言比性能更重要
             foreach (Guid catId in sortedCategoryIds)
             {
-                var cat = await repository.GetCategoryByIdAsync(catId);
+                var cat = await _repository.GetCategoryByIdAsync(catId);
                 if (cat == null)
                 {
                     throw new Exception($"categoryId={catId}不存在");
@@ -76,7 +76,7 @@ namespace Listening.Domain
             Guid albumId, Uri audioUrl, double durationInSecond,
             string subtitleType, string subtitle)
         {
-            int maxSeq = await repository.GetMaxSeqOfEpisodesAsync(albumId);
+            int maxSeq = await _repository.GetMaxSeqOfEpisodesAsync(albumId);
             var id = Guid.NewGuid();
             /*
             Episode episode = Episode.Create(id, maxSeq + 1, name, albumId,
@@ -90,7 +90,7 @@ namespace Listening.Domain
 
         public async Task SortEpisodesAsync(Guid albumId, Guid[] sortedEpisodeIds)
         {
-            var episodes = await repository.GetEpisodesByAlbumIdAsync(albumId);
+            var episodes = await _repository.GetEpisodesByAlbumIdAsync(albumId);
             var idsInDB = episodes.Select(a => a.Id);
             if (!sortedEpisodeIds.SequenceIgnoredEqual(idsInDB))
             {
@@ -100,7 +100,7 @@ namespace Listening.Domain
             int seqNum = 1;
             foreach (Guid episodeId in sortedEpisodeIds)
             {
-                var episode = await repository.GetEpisodeByIdAsync(episodeId);
+                var episode = await _repository.GetEpisodeByIdAsync(episodeId);
                 if (episode == null)
                 {
                     throw new Exception($"episodeId={episodeId}不存在");
