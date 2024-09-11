@@ -7,20 +7,20 @@ namespace Listening.Main.WebAPI.Controllers;
 [ApiController]
 public class AlbumController : ControllerBase
 {
-    private readonly IListeningRepository repository;
-    private readonly IMemoryCacheHelper cacheHelper;
+    private readonly IListeningRepository _repository;
+    private readonly IMemoryCacheHelper _cacheHelper;
     public AlbumController(IListeningRepository repository, IMemoryCacheHelper cacheHelper)
     {
-        this.repository = repository;
-        this.cacheHelper = cacheHelper;
+        this._repository = repository;
+        this._cacheHelper = cacheHelper;
     }
 
     [HttpGet]
     [Route("{id}")]
     public async Task<ActionResult<AlbumVM>> FindById([RequiredGuid] Guid id)
     {
-        var album = await cacheHelper.GetOrCreateAsync($"AlbumController.FindById.{id}",
-           async (e) => AlbumVM.Create(await repository.GetAlbumByIdAsync(id)));
+        var album = await _cacheHelper.GetOrCreateAsync($"AlbumController.FindById.{id}",
+           async (e) => AlbumVM.Create(await _repository.GetAlbumByIdAsync(id)));
         if (album == null)
         {
             return NotFound();
@@ -35,9 +35,9 @@ public class AlbumController : ControllerBase
         //写到单独的local函数的好处是避免回调中代码太复杂
         Task<Album[]> FindDataAsync()
         {
-            return repository.GetAlbumsByCategoryIdAsync(categoryId);
+            return _repository.GetAlbumsByCategoryIdAsync(categoryId);
         }
-        var task = cacheHelper.GetOrCreateAsync($"AlbumController.FindByCategoryId.{categoryId}",
+        var task = _cacheHelper.GetOrCreateAsync($"AlbumController.FindByCategoryId.{categoryId}",
             async (e) => AlbumVM.Create(await FindDataAsync()));
         return await task;
     }

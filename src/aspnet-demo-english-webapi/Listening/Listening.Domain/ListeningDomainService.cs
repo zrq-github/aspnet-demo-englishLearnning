@@ -72,6 +72,10 @@ namespace Listening.Domain
             }
         }
 
+        /// <summary>
+        /// 添加音频
+        /// </summary>
+        /// <returns></returns>
         public async Task<Episode> AddEpisodeAsync(MultilingualString name,
             Guid albumId, Uri audioUrl, double durationInSecond,
             string subtitleType, string subtitle)
