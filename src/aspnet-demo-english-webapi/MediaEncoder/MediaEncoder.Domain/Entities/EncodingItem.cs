@@ -3,16 +3,26 @@ using Zack.DomainCommons.Models;
 
 namespace MediaEncoder.Domain.Entities
 {
+    /// <summary>
+    /// 转码任务项
+    /// </summary>
     public record EncodingItem : BaseEntity, IAggregateRoot, IHasCreationTime
     {
         public DateTime CreationTime { get; private set; }
-        public string SourceSystem { get; private set; }
 
+        /// <summary>
+        /// 任务项来源
+        /// </summary>
+        /// <remarks>
+        /// 该任务项来源于哪个系统
+        /// </remarks>
+        public string SourceSystem { get; private set; }
 
         /// <summary>
         /// 文件大小（尺寸为字节）
         /// </summary>
         public long? FileSizeInBytes { get; private set; }
+
         /// <summary>
         /// 文件名字（非全路径）
         /// </summary>
@@ -29,7 +39,6 @@ namespace MediaEncoder.Domain.Entities
         /// </summary>
         public Uri SourceUrl { get; private set; }
 
-
         /// <summary>
         /// 转码完成的路径
         /// </summary>
@@ -40,6 +49,9 @@ namespace MediaEncoder.Domain.Entities
         /// </summary>
         public string OutputFormat { get; private set; }
 
+        /// <summary>
+        /// 任务项状态
+        /// </summary>
         public ItemStatus Status { get; private set; }
 
         /// <summary>
