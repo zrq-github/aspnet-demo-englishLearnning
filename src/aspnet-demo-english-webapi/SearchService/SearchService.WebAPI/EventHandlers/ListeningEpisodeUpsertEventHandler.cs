@@ -7,11 +7,11 @@ namespace SearchService.WebAPI.EventHandlers;
 [EventName("ListeningEpisode.Updated")]
 public class ListeningEpisodeUpsertEventHandler : DynamicIntegrationEventHandler
 {
-    private readonly ISearchRepository repository;
+    private readonly ISearchRepository _repository;
 
     public ListeningEpisodeUpsertEventHandler(ISearchRepository repository)
     {
-        this.repository = repository;
+        this._repository = repository;
     }
 
     public override Task HandleDynamic(string eventName, dynamic eventData)
@@ -27,6 +27,6 @@ public class ListeningEpisodeUpsertEventHandler : DynamicIntegrationEventHandler
         }
         string plainSentences = string.Join("\r\n", sentences);
         Episode episode = new Episode(id, cnName, engName, plainSentences, albumId);
-        return repository.UpsertAsync(episode);
+        return _repository.UpsertAsync(episode);
     }
 }

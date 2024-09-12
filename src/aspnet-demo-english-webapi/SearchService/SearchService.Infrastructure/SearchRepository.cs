@@ -5,21 +5,21 @@ namespace SearchService.Infrastructure
 {
     public class SearchRepository : ISearchRepository
     {
-        private readonly IElasticClient elasticClient;
+        private readonly IElasticClient _elasticClient;
 
         public SearchRepository(IElasticClient elasticClient)
         {
-            this.elasticClient = elasticClient;
+            this._elasticClient = elasticClient;
         }
 
         public Task DeleteAsync(Guid episodeId)
         {
-            elasticClient.DeleteByQuery<Episode>(q => q
+            _elasticClient.DeleteByQuery<Episode>(q => q
                .Index("episodes")
                .Query(rq => rq.Term(f => f.Id, "elasticsearch.pm")));
             //因为有可能文档不存在，所以不检查结果
             //如果Episode被删除，则把对应的数据也从Elastic Search中删除
-            return elasticClient.DeleteAsync(new DeleteRequest("episodes", episodeId));
+            return _elasticClient.DeleteAsync(new DeleteRequest("episodes", episodeId));
         }
 
         public async Task<SearchEpisodesResponse> SearchEpisodes(string Keyword, int PageIndex, int PageSize)
@@ -32,7 +32,7 @@ namespace SearchService.Infrastructure
                           || q.Match(mq => mq.Field(f => f.PlainSubtitle).Query(kw));
             Func<HighlightDescriptor<Episode>, IHighlight> highlightSelector = h => h
                 .Fields(fs => fs.Field(f => f.PlainSubtitle));
-            var result = await this.elasticClient.SearchAsync<Episode>(s => s.Index("episodes").From(from)
+            var result = await this._elasticClient.SearchAsync<Episode>(s => s.Index("episodes").From(from)
                 .Size(PageSize).Query(query).Highlight(highlightSelector));
             if(!result.IsValid)
             {
@@ -59,7 +59,7 @@ namespace SearchService.Infrastructure
 
         public async Task UpsertAsync(Episode episode)
         {
-            var response = await elasticClient.IndexAsync(episode, idx => idx.Index("episodes").Id(episode.Id));//Upsert:Update or Insert
+            var response = await _elasticClient.IndexAsync(episode, idx => idx.Index("episodes").Id(episode.Id));//Upsert:Update or Insert
             if (!response.IsValid)
             {
                 throw new ApplicationException(response.DebugInformation);
