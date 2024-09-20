@@ -53,6 +53,7 @@ namespace CommonInitializer
             IServiceCollection services = builder.Services;
             IConfiguration configuration = builder.Configuration;
             IEnumerable<Assembly> assemblies = ReflectionHelper.GetAllReferencedAssemblies();
+            // 注册依赖服务
             services.RunModuleInitializers(assemblies);
             services.AddAllDbContexts(ctx =>
             {

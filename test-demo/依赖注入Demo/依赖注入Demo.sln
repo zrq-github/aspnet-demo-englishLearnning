@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "依赖注入", "依赖注入\依赖注入.csproj", "{8ECE15E0-8062-45A4-8EB2-E31034780F0F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8ECE15E0-8062-45A4-8EB2-E31034780F0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ECE15E0-8062-45A4-8EB2-E31034780F0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ECE15E0-8062-45A4-8EB2-E31034780F0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ECE15E0-8062-45A4-8EB2-E31034780F0F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DC98F168-8A02-4EB2-BCC3-5A78ACCF5B3D}
+	EndGlobalSection
+EndGlobal
