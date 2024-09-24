@@ -1,0 +1,6 @@
+@WebAPI风格_HostAddress = http://localhost:5114
+
+GET {{WebAPI风格_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
