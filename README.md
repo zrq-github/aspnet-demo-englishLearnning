@@ -1,10 +1,8 @@
 # aspnet-demo-englishLearnningWeb
 
-基于 aspnet 英语听力网站的开发。
+基于 aspnet
 
-- [参看Github资料](https://github.com/yangzhongke/NETBookMaterials)
-- [.NET Core基础视频，杨中科主讲](https://www.bilibili.com/video/BV1pK41137He/)
-[.NET Core项目实战：开发英语听力精听网站，DDD、微服务、前后端分离、领域驱动设计 bilibili](https://www.bilibili.com/video/BV1zr4y1q7iR/)
+基于 aspnet 英语听力网站的开发。
 
 ## 如何运行此项目
 
@@ -13,3 +11,7 @@
 
 [后端服务运行配置](./doc/项目运行环境配置.md): 系统环境配置，对应软件安装，对应软件的Docker配置
 [前端服务运行配置](./doc/项目前端运行配置.MD): 如何编译前端项目，以及对应的启动
+
+## 项目演示
+
+施工中.gif
