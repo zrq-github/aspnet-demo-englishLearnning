@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "依赖注入", "依赖注入\依赖注入.csproj", "{8ECE15E0-8062-45A4-8EB2-E31034780F0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "依赖注入", "依赖注入\依赖注入.csproj", "{8ECE15E0-8062-45A4-8EB2-E31034780F0F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "依赖注入生命周期", "依赖注入生命周期\依赖注入生命周期.csproj", "{4764696E-9F92-404C-9532-BF6BA3C662E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DI综合案例", "DI综合案例", "{4359D838-71E2-4320-9F51-8CF93B3DD9AF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogServices", "LogServices\LogServices.csproj", "{F96B42A9-89D9-48BA-9F5D-82F8CCD1DFE2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailServices", "MailServices\MailServices.csproj", "{5700D7C4-D8FA-4BC7-94F8-B7EF6EA754C4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigServices", "ConfigServices\ConfigServices.csproj", "{04FAFA1C-CF3A-4393-99A3-FE76D6BDD824}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppMailSender", "ConsoleAppMailSender\ConsoleAppMailSender.csproj", "{1EE2DC59-4F94-45F0-AA8E-5531D142C2C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +27,35 @@ Global
 		{8ECE15E0-8062-45A4-8EB2-E31034780F0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8ECE15E0-8062-45A4-8EB2-E31034780F0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8ECE15E0-8062-45A4-8EB2-E31034780F0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4764696E-9F92-404C-9532-BF6BA3C662E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4764696E-9F92-404C-9532-BF6BA3C662E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4764696E-9F92-404C-9532-BF6BA3C662E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4764696E-9F92-404C-9532-BF6BA3C662E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F96B42A9-89D9-48BA-9F5D-82F8CCD1DFE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F96B42A9-89D9-48BA-9F5D-82F8CCD1DFE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F96B42A9-89D9-48BA-9F5D-82F8CCD1DFE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F96B42A9-89D9-48BA-9F5D-82F8CCD1DFE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5700D7C4-D8FA-4BC7-94F8-B7EF6EA754C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5700D7C4-D8FA-4BC7-94F8-B7EF6EA754C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5700D7C4-D8FA-4BC7-94F8-B7EF6EA754C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5700D7C4-D8FA-4BC7-94F8-B7EF6EA754C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04FAFA1C-CF3A-4393-99A3-FE76D6BDD824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04FAFA1C-CF3A-4393-99A3-FE76D6BDD824}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04FAFA1C-CF3A-4393-99A3-FE76D6BDD824}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04FAFA1C-CF3A-4393-99A3-FE76D6BDD824}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EE2DC59-4F94-45F0-AA8E-5531D142C2C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EE2DC59-4F94-45F0-AA8E-5531D142C2C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EE2DC59-4F94-45F0-AA8E-5531D142C2C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EE2DC59-4F94-45F0-AA8E-5531D142C2C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F96B42A9-89D9-48BA-9F5D-82F8CCD1DFE2} = {4359D838-71E2-4320-9F51-8CF93B3DD9AF}
+		{5700D7C4-D8FA-4BC7-94F8-B7EF6EA754C4} = {4359D838-71E2-4320-9F51-8CF93B3DD9AF}
+		{04FAFA1C-CF3A-4393-99A3-FE76D6BDD824} = {4359D838-71E2-4320-9F51-8CF93B3DD9AF}
+		{1EE2DC59-4F94-45F0-AA8E-5531D142C2C7} = {4359D838-71E2-4320-9F51-8CF93B3DD9AF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DC98F168-8A02-4EB2-BCC3-5A78ACCF5B3D}
