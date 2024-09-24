@@ -20,5 +20,14 @@ namespace LogDemo
         {
             _logger.LogDebug(20, "Doing hard work! {Action}", name);
         }
+
+        public void NLogTest()
+        {
+            _logger.LogTrace("nlog log trace...");
+            _logger.LogDebug("nlog log debug...");
+            _logger.LogInformation("nlog log info...");
+            _logger.LogWarning("nlog log warning...");
+            _logger.LogError("nlog log error...");
+        }
     }
 }

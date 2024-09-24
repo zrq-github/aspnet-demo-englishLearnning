@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NLog;
 using NLog.Extensions.Logging;
+using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
 namespace LogDemo;
 
@@ -15,7 +16,7 @@ internal class Program
         services.AddLogging(logBuilder =>
         {
             logBuilder.AddConsole();
-            logBuilder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+            logBuilder.SetMinimumLevel(LogLevel.Trace);
         });
         services.AddScoped<LogTestClass>();
         using var scope = services.BuildServiceProvider();
@@ -29,8 +30,8 @@ internal class Program
         try
         {
             var config = new ConfigurationBuilder()
-                .SetBasePath(System.IO.Directory.GetCurrentDirectory()) //From NuGet Package Microsoft.Extensions.Configuration.Json
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .SetBasePath(Directory.GetCurrentDirectory()) //From NuGet Package Microsoft.Extensions.Configuration.Json
+                .AddJsonFile("appsettings.json", true, true)
                 .Build();
 
             using var servicesProvider = new ServiceCollection()
@@ -39,7 +40,7 @@ internal class Program
                 {
                     // configure Logging with NLog
                     loggingBuilder.ClearProviders();
-                    loggingBuilder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+                    loggingBuilder.SetMinimumLevel(LogLevel.Trace);
                     loggingBuilder.AddNLog(config);
                 }).BuildServiceProvider();
 
@@ -64,6 +65,23 @@ internal class Program
 
     private static void Main(string[] args)
     {
-        NLog();
+        using var servicesProvider = new ServiceCollection()
+            .AddTransient<Runner>() // Runner is the custom class
+            .AddLogging(loggingBuilder =>
+            {
+                // configure Logging with NLog
+                loggingBuilder.ClearProviders();
+                loggingBuilder.SetMinimumLevel(LogLevel.Trace);
+                loggingBuilder.AddNLog();
+            }).BuildServiceProvider();
+
+        var runner = servicesProvider.GetRequiredService<Runner>();
+        runner.NLogTest();
+
+        Console.WriteLine("Press ANY key to exit");
+        Console.ReadKey();
+
+        //ConsoleLogger();
+        //NLog();
     }
 }
