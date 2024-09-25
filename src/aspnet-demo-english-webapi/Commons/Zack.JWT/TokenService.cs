@@ -11,7 +11,6 @@ namespace Zack.JWT
     {
         public string BuildToken(IEnumerable<Claim> claims, JWTOptions options)
         {
-
             TimeSpan ExpiryDuration = TimeSpan.FromSeconds(options.ExpireSeconds);
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.Key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
