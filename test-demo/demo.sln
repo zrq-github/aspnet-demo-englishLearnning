@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "中间件", "中间件", "{02E3A2A0-5F54-41A4-B455-FDD904C0047C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "中间件流程", "中间件流程\中间件流程.csproj", "{893840DB-FD16-4289-A696-CB2DD12377D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{893840DB-FD16-4289-A696-CB2DD12377D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{893840DB-FD16-4289-A696-CB2DD12377D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{893840DB-FD16-4289-A696-CB2DD12377D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{893840DB-FD16-4289-A696-CB2DD12377D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{893840DB-FD16-4289-A696-CB2DD12377D4} = {02E3A2A0-5F54-41A4-B455-FDD904C0047C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CABB094B-1374-4175-9D67-0B5CE6FDA16F}
+	EndGlobalSection
+EndGlobal

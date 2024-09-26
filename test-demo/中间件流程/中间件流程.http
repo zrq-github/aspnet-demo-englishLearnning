@@ -1,0 +1,6 @@
+@中间件流程_HostAddress = http://localhost:5031
+
+GET {{中间件流程_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
