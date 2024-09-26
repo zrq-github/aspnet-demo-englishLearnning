@@ -27,7 +27,6 @@ namespace CommonInitializer
         /// <summary>
         /// 配置数据库连接路径
         /// </summary>
-        /// <param name="builder"></param>
         public static void ConfigureDbConfiguration(this WebApplicationBuilder builder)
         {
             builder.Host.ConfigureAppConfiguration((hostCtx, configBuilder) =>
@@ -58,8 +57,7 @@ namespace CommonInitializer
             services.AddAllDbContexts(ctx =>
             {
                 //连接字符串如果放到appsettings.json中，会有泄密的风险
-                //如果放到UserSecrets中，每个项目都要配置，很麻烦
-                //因此这里推荐放到环境变量中。
+                //如果放到UserSecrets中，每个项目都要配置，很麻烦;因此这里推荐放到环境变量中。
                 string connStr = configuration.GetValue<string>("DefaultDB:ConnStr");
                 ctx.UseSqlServer(connStr);
             }, assemblies);

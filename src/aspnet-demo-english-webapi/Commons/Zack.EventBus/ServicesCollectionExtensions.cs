@@ -16,6 +16,9 @@ namespace Zack.EventBus
             return AddEventBus(services, queueName, assemblies.ToList());
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static IServiceCollection AddEventBus(this IServiceCollection services, string queueName,
             IEnumerable<Assembly> assemblies)
         {
