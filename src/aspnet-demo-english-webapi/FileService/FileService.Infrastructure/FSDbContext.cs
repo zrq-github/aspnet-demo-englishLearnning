@@ -2,7 +2,7 @@
 
 namespace FileService.Infrastructure
 {
-    public class FSDbContext : BaseDbContext
+    public class FSDbContext : DomainBaseDbContext
     {
         public DbSet<UploadedItem> UploadItems { get; private set; }
 

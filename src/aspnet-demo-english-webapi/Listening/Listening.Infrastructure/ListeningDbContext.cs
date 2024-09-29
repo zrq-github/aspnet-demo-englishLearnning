@@ -5,7 +5,7 @@ using Zack.Infrastructure.EFCore;
 
 namespace Listening.Domain
 {
-    public class ListeningDbContext : BaseDbContext
+    public class ListeningDbContext : DomainBaseDbContext
     {
         public DbSet<Category> Categories { get; private set; }//不要忘了写set，否则拿到的DbContext的Categories为null
         public DbSet<Album> Albums { get; private set; }

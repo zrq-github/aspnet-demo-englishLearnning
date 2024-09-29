@@ -5,34 +5,36 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Zack.DomainCommons.Models
 {
+    /// <summary>
+    /// 实体基类
+    /// </summary>
     public record BaseEntity : IEntity, IDomainEvents
     {
-
         [NotMapped]
-        private List<INotification> domainEvents = new();
+        private readonly List<INotification> _domainEvents = new();
 
         public Guid Id { get; protected set; } = Guid.NewGuid();
 
         public void AddDomainEvent(INotification eventItem)
         {
-            domainEvents.Add(eventItem);
+            _domainEvents.Add(eventItem);
         }
 
         public void AddDomainEventIfAbsent(INotification eventItem)
         {
-            if (!domainEvents.Contains(eventItem))
+            if (!_domainEvents.Contains(eventItem))
             {
-                domainEvents.Add(eventItem);
+                _domainEvents.Add(eventItem);
             }
         }
         public void ClearDomainEvents()
         {
-            domainEvents.Clear();
+            _domainEvents.Clear();
         }
 
         public IEnumerable<INotification> GetDomainEvents()
         {
-            return domainEvents;
+            return _domainEvents;
         }
     }
 }

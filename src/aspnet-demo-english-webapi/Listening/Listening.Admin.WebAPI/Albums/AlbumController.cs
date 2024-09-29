@@ -12,14 +12,14 @@ namespace Listening.Admin.WebAPI.Albums;
 public class AlbumController : ControllerBase
 {
     private readonly ListeningDbContext _dbCtx;
-    private IListeningRepository _repository;
     private readonly ListeningDomainService _domainService;
+    private readonly IListeningRepository _repository;
 
     public AlbumController(ListeningDbContext dbCtx, ListeningDomainService domainService, IListeningRepository repository)
     {
-        this._dbCtx = dbCtx;
-        this._domainService = domainService;
-        this._repository = repository;
+        _dbCtx = dbCtx;
+        _domainService = domainService;
+        _repository = repository;
     }
 
     [HttpGet]
@@ -40,7 +40,7 @@ public class AlbumController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Guid>> Add(AlbumAddRequest req)
     {
-        Album album = await _domainService.AddAlbumAsync(req.CategoryId, req.Name);
+        var album = await _domainService.AddAlbumAsync(req.CategoryId, req.Name);
         _dbCtx.Add(album);
         return album.Id;
     }
@@ -50,10 +50,7 @@ public class AlbumController : ControllerBase
     public async Task<ActionResult> Update([RequiredGuid] Guid id, AlbumUpdateRequest request)
     {
         var album = await _repository.GetAlbumByIdAsync(id);
-        if (album == null)
-        {
-            return NotFound("id没找到");
-        }
+        if (album == null) return NotFound("id没找到");
         album.ChangeName(request.Name);
         return Ok();
     }
@@ -64,11 +61,9 @@ public class AlbumController : ControllerBase
     {
         var album = await _repository.GetAlbumByIdAsync(id);
         if (album == null)
-        {
             //这样做仍然是幂等的，因为“调用N次，确保服务器处于与第一次调用相同的状态。”与响应无关
             return NotFound($"没有Id={id}的Album");
-        }
-        album.SoftDelete();//软删除
+        album.SoftDelete(); //软删除
         return Ok();
     }
 
@@ -77,10 +72,7 @@ public class AlbumController : ControllerBase
     public async Task<ActionResult> Hide([RequiredGuid] Guid id)
     {
         var album = await _repository.GetAlbumByIdAsync(id);
-        if (album == null)
-        {
-            return NotFound($"没有Id={id}的Album");
-        }
+        if (album == null) return NotFound($"没有Id={id}的Album");
         album.Hide();
         return Ok();
     }
@@ -90,10 +82,7 @@ public class AlbumController : ControllerBase
     public async Task<ActionResult> Show([RequiredGuid] Guid id)
     {
         var album = await _repository.GetAlbumByIdAsync(id);
-        if (album == null)
-        {
-            return NotFound($"没有Id={id}的Album");
-        }
+        if (album == null) return NotFound($"没有Id={id}的Album");
         album.Show();
         return Ok();
     }
