@@ -5,7 +5,7 @@ namespace Listening.Domain.Entities
     /// <summary>
     /// 分类
     /// </summary>
-    public record Category : AggregateRootEntity, IAggregateRoot
+    public record Category : AggregateRootEntity
     {
         private Category() { }
 

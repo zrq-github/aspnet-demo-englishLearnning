@@ -12,7 +12,7 @@ namespace Listening.Domain.Entities;
 /// <summary>
 /// 音频
 /// </summary>
-public record Episode : AggregateRootEntity, IAggregateRoot
+public record Episode : AggregateRootEntity
 {
     private Episode() { }
 
