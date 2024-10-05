@@ -1,5 +1,7 @@
 # RabbitMQ
 
+# RabbitMQ配置问题
+
 ## Web管理页面打不开
 
 如果你使用 Docker 启动 RabbitMQ 容器后，无法通过 `http://localhost:15672` 访问 RabbitMQ 的管理界面，可能有以下几个原因及解决方法：

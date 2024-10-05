@@ -33,6 +33,6 @@ if (builder.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MediaEncoder.WebAPI v1"));
 }
-app.UseZackDefault();
+app.UseDefault(app.Environment);
 app.MapControllers();
 app.Run();

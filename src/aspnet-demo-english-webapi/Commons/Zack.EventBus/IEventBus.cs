@@ -1,14 +1,13 @@
 ﻿using System;
 
-namespace Zack.EventBus
+namespace Zack.EventBus;
+
+public interface IEventBus
 {
-    public interface IEventBus
-    {
-        void Publish(string eventName, object? eventData);
+    void Publish(string eventName, object? eventData);
 
 
-        void Subscribe(string eventName, Type handlerType);
+    void Subscribe(string eventName, Type handlerType);
 
-        void Unsubscribe(string eventName, Type handlerType);
-    }
+    void Unsubscribe(string eventName, Type handlerType);
 }

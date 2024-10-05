@@ -29,6 +29,6 @@ if (builder.Environment.IsDevelopment())
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Listening.Admin.WebAPI v1"));
 }
 app.MapHub<EpisodeEncodingStatusHub>("/Hubs/EpisodeEncodingStatusHub");
-app.UseZackDefault();
+app.UseDefault(app.Environment);
 app.MapControllers();
 app.Run();

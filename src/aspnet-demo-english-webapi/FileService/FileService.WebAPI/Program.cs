@@ -1,6 +1,7 @@
 using CommonInitializer;
 using FileService.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -33,7 +34,7 @@ if (builder.Environment.IsDevelopment())
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FileService.WebAPI v1"));
 }
 app.UseStaticFiles();
-app.UseZackDefault();
+app.UseDefault(app.Environment);
 
 app.MapControllers();
 

@@ -28,6 +28,6 @@ if (builder.Environment.IsDevelopment())
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Listening.Main.WebAPI v1"));
 }
 
-app.UseZackDefault();
+app.UseDefault(app.Environment);
 app.MapControllers();
 app.Run();

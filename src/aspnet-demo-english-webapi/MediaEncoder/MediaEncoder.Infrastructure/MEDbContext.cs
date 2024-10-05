@@ -5,7 +5,7 @@ using Zack.Infrastructure.EFCore;
 
 namespace MediaEncoder.Infrastructure
 {
-    public class MEDbContext : BaseDbContext
+    public class MEDbContext : DomainBaseDbContext
     {
         public DbSet<EncodingItem> EncodingItems { get; private set; }
 

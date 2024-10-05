@@ -68,6 +68,6 @@ if (builder.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "IdentityService.WebAPI v1"));
 }
-app.UseZackDefault();
+app.UseDefault(app.Environment);
 app.MapControllers();
 app.Run();
