@@ -2,6 +2,9 @@
 
 namespace Ron.EventBus
 {
+    /// <summary>
+    /// 融合事件接口
+    /// </summary>
     public interface IIntegrationEventHandler
     {
         //因为消息可能会重复发送，因此Handle内的实现需要是幂等的

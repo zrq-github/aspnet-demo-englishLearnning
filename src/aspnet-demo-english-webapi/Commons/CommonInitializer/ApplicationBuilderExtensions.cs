@@ -11,13 +11,16 @@ namespace CommonInitializer
         /// <summary>
         /// 设置一些默认的配置
         /// </summary>
-        /// <param name="app"><see cref="IApplicationBuilder"/></param>
-        /// <param name="env"><see cref="IWebHostEnvironment"/></param>
+        /// <remarks>
+        /// UseCors; UseForwardedHeaders; UseAuthentication; UseAuthorization;
+        /// </remarks>
         /// <returns></returns>
         public static IApplicationBuilder UseDefault(this IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseEventBus();
-            app.UseCors();//启用Cors
+            // 启用Cors
+            app.UseCors();
+            // 启动处理代理服务器转发。主要是Nginx服务器
             app.UseForwardedHeaders();
             //if (env.IsProduction())
             //{
@@ -31,7 +34,7 @@ namespace CommonInitializer
             //    // 可能不能与与ForwardedHeaders很好的工作，而且webapi项目也没必要配置这个
             //    app.UseHttpsRedirection();
             //}
-
+            // 用户验证
             app.UseAuthentication();
             app.UseAuthorization();
             return app;

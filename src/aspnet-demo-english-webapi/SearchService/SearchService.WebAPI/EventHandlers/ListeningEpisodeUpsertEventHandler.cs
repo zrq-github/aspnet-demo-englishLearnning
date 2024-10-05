@@ -5,7 +5,7 @@ namespace SearchService.WebAPI.EventHandlers;
 
 [EventName("ListeningEpisode.Created")]
 [EventName("ListeningEpisode.Updated")]
-public class ListeningEpisodeUpsertEventHandler : DynamicIntegrationEventHandler
+public class ListeningEpisodeUpsertEventHandler : DynamicEventHandler
 {
     private readonly ISearchRepository _repository;
 

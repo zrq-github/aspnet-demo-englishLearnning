@@ -3,6 +3,9 @@ using Dynamic.Json;
 
 namespace Ron.EventBus;
 
+/// <summary>
+/// 动态内部事件
+/// </summary>
 public abstract class DynamicIntegrationEventHandler : IIntegrationEventHandler
 {
     #region IIntegrationEventHandler Members

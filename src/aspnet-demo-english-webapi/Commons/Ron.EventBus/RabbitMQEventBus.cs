@@ -10,6 +10,9 @@ using RabbitMQ.Client.Events;
 
 namespace Ron.EventBus;
 
+/// <summary>
+/// RabbitMQ事件
+/// </summary>
 internal class RabbitMQEventBus : IEventBus, IDisposable
 {
     private readonly IModel _consumerChannel;
@@ -53,7 +56,7 @@ internal class RabbitMQEventBus : IEventBus, IDisposable
 
     public void Publish(string eventName, object? eventData)
     {
-        if (!_persistentConnection.IsConnected) 
+        if (!_persistentConnection.IsConnected)
             _persistentConnection.TryConnect();
 
         //Channel 是建立在 Connection 上的虚拟连接
@@ -86,14 +89,20 @@ internal class RabbitMQEventBus : IEventBus, IDisposable
         }
     }
 
+    /// <summary>
+    /// 注册（订阅）事件
+    /// </summary>
     public void Subscribe(string eventName, Type handlerType)
     {
         CheckHandlerType(handlerType);
-        DoInternalSubscription(eventName);
+        InternalSubscription(eventName);
         _subsManager.AddSubscription(eventName, handlerType);
         StartBasicConsume();
     }
 
+    /// <summary>
+    /// 注销事件
+    /// </summary>
     public void Unsubscribe(string eventName, Type handlerType)
     {
         CheckHandlerType(handlerType);
@@ -120,12 +129,18 @@ internal class RabbitMQEventBus : IEventBus, IDisposable
         }
     }
 
-    private void DoInternalSubscription(string eventName)
+    /// <summary>
+    /// 内部注册实现RabbitMQ信道的绑定
+    /// </summary>
+    /// <remarks>
+    /// <see cref="RabbitMQ.Client.IModelExensions.QueueBind(IModel, string, string, string, System.Collections.Generic.IDictionary{string, object})"/>
+    /// </remarks>
+    private void InternalSubscription(string eventName)
     {
         var containsKey = _subsManager.HasSubscriptionsForEvent(eventName);
         if (!containsKey)
         {
-            if (!_persistentConnection.IsConnected) 
+            if (!_persistentConnection.IsConnected)
                 _persistentConnection.TryConnect();
 
             _consumerChannel.QueueBind(_queueName,
@@ -136,7 +151,7 @@ internal class RabbitMQEventBus : IEventBus, IDisposable
 
     private void CheckHandlerType(Type handlerType)
     {
-        if (!typeof(IIntegrationEventHandler).IsAssignableFrom(handlerType)) 
+        if (!typeof(IIntegrationEventHandler).IsAssignableFrom(handlerType))
             throw new ArgumentException($"{handlerType} doesn't inherit from IIntegrationEventHandler", nameof(handlerType));
     }
 
@@ -175,7 +190,7 @@ internal class RabbitMQEventBus : IEventBus, IDisposable
 
     private IModel CreateConsumerChannel()
     {
-        if (!_persistentConnection.IsConnected) 
+        if (!_persistentConnection.IsConnected)
             _persistentConnection.TryConnect();
 
         var channel = _persistentConnection.CreateModel();

@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace Ron.EventBus
 {
+    /// <summary>
+    /// 订阅管理者
+    /// </summary>
     class SubscriptionsManager
     {
         //key是eventName，值是监听这个事件的实现了IIntegrationEventHandler接口的类型

@@ -5,7 +5,7 @@ using Ron.EventBus;
 namespace IdentityService.WebAPI.Events
 {
     [EventName("IdentityService.User.PasswordReset")]
-    public class ResetPasswordEventHandler : JsonIntegrationEventHandler<ResetPasswordEvent>
+    public class ResetPasswordEventHandler : JsonEventHandler<ResetPasswordEvent>
     {
         private readonly ILogger<ResetPasswordEventHandler> logger;
         private readonly ISmsSender smsSender;
