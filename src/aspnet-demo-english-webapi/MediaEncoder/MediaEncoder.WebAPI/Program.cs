@@ -4,7 +4,7 @@ using MediaEncoder.WebAPI.Options;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Zack.JWT;
+using Ron.JWT;
 
 var builder = WebApplication.CreateBuilder(args);
 

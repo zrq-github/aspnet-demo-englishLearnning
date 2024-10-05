@@ -1,6 +1,6 @@
 ﻿using Identity.Repository;
 using Microsoft.Extensions.Logging;
-using Zack.EventBus;
+using Ron.EventBus;
 
 namespace IdentityService.WebAPI.Events
 {

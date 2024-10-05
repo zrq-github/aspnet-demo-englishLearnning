@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Commons\Zack.Commons\Zack.Commons.csproj" />
-    <ProjectReference Include="..\..\Commons\Zack.DomainCommons\Zack.DomainCommons.csproj" />
+    <ProjectReference Include="..\..\Commons\Ron.Commons\Ron.Commons.csproj" />
+    <ProjectReference Include="..\..\Commons\Ron.DomainCommons\Ron.DomainCommons.csproj" />
   </ItemGroup>
 
 </Project>

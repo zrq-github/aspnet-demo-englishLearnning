@@ -1,7 +1,7 @@
 ﻿using Listening.Domain.Events;
 using Listening.Domain.Subtitles;
 using Listening.Domain.ValueObjects;
-using Zack.DomainCommons.Models;
+using Ron.DomainCommons.Models;
 
 namespace Listening.Domain.Entities;
 

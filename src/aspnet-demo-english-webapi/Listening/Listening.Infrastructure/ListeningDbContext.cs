@@ -1,7 +1,7 @@
 ﻿using Listening.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Zack.Infrastructure.EFCore;
+using Ron.Infrastructure.EFCore;
 
 namespace Listening.Domain
 {

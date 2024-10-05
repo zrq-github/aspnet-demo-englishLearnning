@@ -1,6 +1,6 @@
 ﻿using MediaEncoder.Domain;
 using Microsoft.Extensions.DependencyInjection;
-using Zack.Commons;
+using Ron.Commons;
 
 namespace MediaEncoder.Infrastructure;
 public class ModuleInitializer : IModuleInitializer

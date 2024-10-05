@@ -144,7 +144,7 @@ namespace Listening.Infrastructure.Migrations
 
             modelBuilder.Entity("Listening.Domain.Entities.Album", b =>
                 {
-                    b.OwnsOne("Zack.DomainCommons.Models.MultilingualString", "Name", b1 =>
+                    b.OwnsOne("Ron.DomainCommons.Models.MultilingualString", "Name", b1 =>
                         {
                             b1.Property<Guid>("AlbumId")
                                 .HasColumnType("uniqueidentifier");
@@ -175,7 +175,7 @@ namespace Listening.Infrastructure.Migrations
 
             modelBuilder.Entity("Listening.Domain.Entities.Category", b =>
                 {
-                    b.OwnsOne("Zack.DomainCommons.Models.MultilingualString", "Name", b1 =>
+                    b.OwnsOne("Ron.DomainCommons.Models.MultilingualString", "Name", b1 =>
                         {
                             b1.Property<Guid>("CategoryId")
                                 .HasColumnType("uniqueidentifier");
@@ -206,7 +206,7 @@ namespace Listening.Infrastructure.Migrations
 
             modelBuilder.Entity("Listening.Domain.Entities.Episode", b =>
                 {
-                    b.OwnsOne("Zack.DomainCommons.Models.MultilingualString", "Name", b1 =>
+                    b.OwnsOne("Ron.DomainCommons.Models.MultilingualString", "Name", b1 =>
                         {
                             b1.Property<Guid>("EpisodeId")
                                 .HasColumnType("uniqueidentifier");

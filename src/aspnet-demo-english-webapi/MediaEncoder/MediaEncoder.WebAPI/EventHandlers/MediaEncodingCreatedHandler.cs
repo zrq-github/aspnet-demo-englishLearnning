@@ -1,7 +1,7 @@
 ﻿
 using MediaEncoder.Domain.Entities;
 using MediaEncoder.Infrastructure;
-using Zack.EventBus;
+using Ron.EventBus;
 
 namespace MediaEncoder.WebAPI.EventHandlers;
 

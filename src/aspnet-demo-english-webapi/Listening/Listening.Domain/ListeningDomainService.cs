@@ -1,6 +1,6 @@
 ﻿using Listening.Domain.Entities;
 using System.Threading.Tasks;
-using Zack.DomainCommons.Models;
+using Ron.DomainCommons.Models;
 
 namespace Listening.Domain
 {

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
-using Zack.JWT;
+using Ron.JWT;
 
 namespace IdentityService.Infrastructure
 {

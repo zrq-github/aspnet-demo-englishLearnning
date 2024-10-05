@@ -1,5 +1,5 @@
 ﻿using MediaEncoder.Domain.Events;
-using Zack.DomainCommons.Models;
+using Ron.DomainCommons.Models;
 
 namespace MediaEncoder.Domain.Entities
 {

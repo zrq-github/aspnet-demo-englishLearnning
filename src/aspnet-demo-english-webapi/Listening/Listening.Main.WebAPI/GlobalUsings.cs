@@ -6,5 +6,5 @@ global using System.Collections.Generic;
 global using System.ComponentModel.DataAnnotations;
 global using System.Linq;
 global using System.Threading.Tasks;
-global using Zack.ASPNETCore;
-global using Zack.DomainCommons.Models;
+global using Ron.ASPNETCore;
+global using Ron.DomainCommons.Models;

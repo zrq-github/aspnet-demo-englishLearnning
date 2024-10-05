@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SearchService.Domain;
 using SearchService.WebAPI.Controllers.Request;
-using Zack.EventBus;
+using Ron.EventBus;
 
 namespace SearchService.WebAPI.Controllers;
 [ApiController]

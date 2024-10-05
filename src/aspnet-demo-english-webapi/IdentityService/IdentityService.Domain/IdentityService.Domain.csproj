@@ -9,7 +9,7 @@
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="6.0.1" />
   </ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\Commons\Zack.DomainCommons\Zack.DomainCommons.csproj" />
-		<ProjectReference Include="..\..\Commons\Zack.JWT\Zack.JWT.csproj" />
+		<ProjectReference Include="..\..\Commons\Ron.DomainCommons\Ron.DomainCommons.csproj" />
+		<ProjectReference Include="..\..\Commons\Ron.JWT\Ron.JWT.csproj" />
 	</ItemGroup>
 </Project>

@@ -16,10 +16,10 @@
 
   </ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\Zack.ASPNETCore\Zack.ASPNETCore.csproj" />
-		<ProjectReference Include="..\Zack.Commons\Zack.Commons.csproj" />
-		<ProjectReference Include="..\Zack.EventBus\Zack.EventBus.csproj" />
-		<ProjectReference Include="..\Zack.Infrastructure\Zack.Infrastructure.csproj" />
-		<ProjectReference Include="..\Zack.JWT\Zack.JWT.csproj" />
+		<ProjectReference Include="..\Ron.ASPNETCore\Ron.ASPNETCore.csproj" />
+		<ProjectReference Include="..\Ron.Commons\Ron.Commons.csproj" />
+		<ProjectReference Include="..\Ron.EventBus\Ron.EventBus.csproj" />
+		<ProjectReference Include="..\Ron.Infrastructure\Ron.Infrastructure.csproj" />
+		<ProjectReference Include="..\Ron.JWT\Ron.JWT.csproj" />
 	</ItemGroup>
 </Project>

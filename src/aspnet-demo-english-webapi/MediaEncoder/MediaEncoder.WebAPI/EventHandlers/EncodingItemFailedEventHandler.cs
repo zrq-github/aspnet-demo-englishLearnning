@@ -1,5 +1,5 @@
 ﻿using MediaEncoder.Domain.Events;
-using Zack.EventBus;
+using Ron.EventBus;
 
 namespace MediaEncoder.WebAPI.EventHandlers;
 class EncodingItemFailedEventHandler : INotificationHandler<EncodingItemFailedEvent>

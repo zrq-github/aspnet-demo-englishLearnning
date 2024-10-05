@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Zack.EventBus;
+using Ron.EventBus;
 
 namespace Listening.Admin.WebAPI.Episodes;
 [Route("[controller]/[action]")]

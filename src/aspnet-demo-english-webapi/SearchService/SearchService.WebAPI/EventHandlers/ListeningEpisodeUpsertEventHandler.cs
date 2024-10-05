@@ -1,5 +1,5 @@
 ﻿using SearchService.Domain;
-using Zack.EventBus;
+using Ron.EventBus;
 
 namespace SearchService.WebAPI.EventHandlers;
 

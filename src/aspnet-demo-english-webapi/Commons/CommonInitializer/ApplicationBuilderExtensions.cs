@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Hosting;
-using Zack.EventBus;
+using Ron.EventBus;
 
 namespace CommonInitializer
 {

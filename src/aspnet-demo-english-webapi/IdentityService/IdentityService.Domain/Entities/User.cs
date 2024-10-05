@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Zack.DomainCommons.Models;
+using Ron.DomainCommons.Models;
 
 namespace IdentityService.Domain;
 public class User : IdentityUser<Guid>, IHasCreationTime, IHasDeletionTime, ISoftDelete

@@ -11,11 +11,11 @@ using StackExchange.Redis;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Data.SqlClient;
 using System.Reflection;
-using Zack.ASPNETCore;
-using Zack.Commons;
-using Zack.Commons.JsonConverters;
-using Zack.EventBus;
-using Zack.JWT;
+using Ron.ASPNETCore;
+using Ron.Commons;
+using Ron.Commons.JsonConverters;
+using Ron.EventBus;
+using Ron.JWT;
 
 namespace CommonInitializer
 {
