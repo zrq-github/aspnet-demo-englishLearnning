@@ -4,8 +4,11 @@ using Dynamic.Json;
 namespace Ron.EventBus;
 
 /// <summary>
-/// 动态内部事件
+/// 集成事件
 /// </summary>
+/// <remarks>
+/// 将接受的消息反序列成动态类型
+/// </remarks>
 public abstract class DynamicIntegrationEventHandler : IIntegrationEventHandler
 {
     #region IIntegrationEventHandler Members

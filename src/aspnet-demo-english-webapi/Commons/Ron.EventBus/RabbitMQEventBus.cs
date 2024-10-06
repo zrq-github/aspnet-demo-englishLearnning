@@ -36,7 +36,7 @@ internal class RabbitMQEventBus : IEventBus, IDisposable
         serviceScope = serviceProviderFactory.CreateScope();
         _serviceProvider = serviceScope.ServiceProvider;
         _consumerChannel = CreateConsumerChannel();
-        _subsManager.OnEventRemoved += SubsManager_OnEventRemoved;
+        _subsManager.EventRemoved += SubsManagerEventRemoved;
     }
 
     #region IDisposable Members
@@ -111,9 +111,10 @@ internal class RabbitMQEventBus : IEventBus, IDisposable
 
     #endregion
 
-    private void SubsManager_OnEventRemoved(object? sender, string eventName)
+    private void SubsManagerEventRemoved(object? sender, string eventName)
     {
-        if (!_persistentConnection.IsConnected) _persistentConnection.TryConnect();
+        if (!_persistentConnection.IsConnected) 
+            _persistentConnection.TryConnect();
 
         using (var channel = _persistentConnection.CreateModel())
         {
