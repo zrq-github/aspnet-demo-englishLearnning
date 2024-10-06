@@ -6,7 +6,7 @@ using Ron.EventBus;
 namespace MediaEncoder.WebAPI.EventHandlers;
 
 [EventName("MediaEncoding.Created")]
-public class MediaEncodingCreatedHandler : DynamicEventHandler
+public class MediaEncodingCreatedHandler : DynamicIntegrationEventHandler
 {
     private readonly IEventBus eventBus;
     private readonly MEDbContext dbContext;

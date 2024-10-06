@@ -5,7 +5,7 @@ namespace SearchService.WebAPI.EventHandlers;
 
 [EventName("ListeningEpisode.Deleted")]
 [EventName("ListeningEpisode.Hidden")]//被隐藏也看作删除
-public class ListeningEpisodeDeletedEventHandler : DynamicEventHandler
+public class ListeningEpisodeDeletedEventHandler : DynamicIntegrationEventHandler
 {
     private readonly ISearchRepository repository;
 

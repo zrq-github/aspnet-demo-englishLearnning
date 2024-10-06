@@ -17,7 +17,8 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Commons\CommonInitializer\CommonInitializer.csproj" />
-		<ProjectReference Include="..\IdentityService.Domain\IdentityService.Domain.csproj" />
+    <ProjectReference Include="..\..\Commons\Ron.EventBus\Ron.EventBus.csproj" />
+    <ProjectReference Include="..\IdentityService.Domain\IdentityService.Domain.csproj" />
 		<ProjectReference Include="..\IdentityService.Infrastructure\IdentityService.Infrastructure.csproj" />
 	</ItemGroup>
 

@@ -6,7 +6,7 @@ namespace Ron.EventBus
     /// 事件队列的事件名字
     /// </summary>
     /// <remarks>
-    /// 
+    /// RabbitMQ -> RoutKey
     /// </remarks>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class EventNameAttribute : Attribute

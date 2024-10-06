@@ -12,8 +12,9 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\Commons\CommonInitializer\CommonInitializer.csproj" />
-		<ProjectReference Include="..\Listening.Domain\Listening.Domain.csproj" />
-		<ProjectReference Include="..\Listening.Infrastructure\Listening.Infrastructure.csproj" />
-	</ItemGroup>
+    <ProjectReference Include="..\..\Commons\Ron.EventBus\Ron.EventBus.csproj" />
+    <ProjectReference Include="..\Listening.Domain\Listening.Domain.csproj" />
+    <ProjectReference Include="..\Listening.Infrastructure\Listening.Infrastructure.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -67,10 +67,10 @@ namespace Ron.EventBus
                 {
                     //获取类上标注的EventNameAttribute，EventNameAttribute的Name为要监听的事件的名字
                     //允许监听多个事件，但是不能为空
-                    var eventNameAttrs = type.GetCustomAttributes<MQEventNameAttribute>();
+                    var eventNameAttrs = type.GetCustomAttributes<EventNameAttribute>();
                     if (eventNameAttrs.Any() == false)
                     {
-                        throw new ApplicationException($"There shoule be at least one MQEventNameAttribute on {type}");
+                        throw new ApplicationException($"There shoule be at least one EventNameAttribute on {type}");
                     }
                     foreach (var eventNameAttr in eventNameAttrs)
                     {
