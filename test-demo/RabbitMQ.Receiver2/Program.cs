@@ -17,7 +17,7 @@ internal class Program
         // "guest"/"guest" by default, limited to localhost connections
         factory.UserName = ConnectionFactory.DefaultUser;
         factory.Password = ConnectionFactory.DefaultPass;
-        factory.VirtualHost = ConnectionFactory.DefaultVHost; 
+        factory.VirtualHost = ConnectionFactory.DefaultVHost;
         factory.HostName = "localhost";
 
         factory.DispatchConsumersAsync = true;
@@ -40,7 +40,7 @@ internal class Program
         {
             var body = ea.Body.ToArray();
             var message = Encoding.UTF8.GetString(body);
-            Console.WriteLine($"Receiver accept message: {message}");
+            Console.WriteLine($"Receiver2 accept message: {message}");
             // copy or deserialise the payload
             // and process the message
             // ...
