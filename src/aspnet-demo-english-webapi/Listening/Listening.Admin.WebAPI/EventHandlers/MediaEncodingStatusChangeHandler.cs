@@ -36,6 +36,7 @@ class MediaEncodingStatusChangeIntegrationHandler : DynamicIntegrationEventHandl
         }
         Guid id = Guid.Parse(eventData.Id);//EncodingItem的Id就是Episode 的Id
 
+        //todo: 这样做有问题，这样就会把消息发送给所有打开这个界面的人，应该用connectionId、userId等进行过滤，
         switch (eventName)
         {
             case "MediaEncoding.Started":
@@ -44,7 +45,6 @@ class MediaEncodingStatusChangeIntegrationHandler : DynamicIntegrationEventHandl
                 break;
             case "MediaEncoding.Failed":
                 await encHelper.UpdateEpisodeStatusAsync(id, "Failed");
-                //todo: 这样做有问题，这样就会把消息发送给所有打开这个界面的人，应该用connectionId、userId等进行过滤，
                 await hubContext.Clients.All.SendAsync("OnMediaEncodingFailed", id);
                 break;
             case "MediaEncoding.Duplicated":
