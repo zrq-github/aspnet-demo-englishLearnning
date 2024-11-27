@@ -402,3 +402,5 @@ test-demo/ffmpeg-demo/destFile/
 
 # 上传的音频文件会暂时放在这里，忽略这里的文件
 src/aspnet-demo-english-webapi/FileService/FileService.WebAPI/wwwroot/
+
+.idea/

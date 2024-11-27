@@ -15,7 +15,7 @@ namespace Ron.EventBus;
 /// </summary>
 internal class RabbitMQEventBus : IEventBus, IDisposable
 {
-    private readonly IModel _consumerChannel;
+    private readonly IChannel _consumerChannel;
     private readonly string _exchangeName;
     private readonly RabbitMQConnection _persistentConnection;
     private readonly IServiceProvider _serviceProvider;
@@ -57,12 +57,12 @@ internal class RabbitMQEventBus : IEventBus, IDisposable
     public void Publish(string eventName, object? eventData)
     {
         if (!_persistentConnection.IsConnected)
-            _persistentConnection.TryConnect();
+            _persistentConnection.TryConnectAsync();
 
         //Channel 是建立在 Connection 上的虚拟连接
         //创建和销毁 TCP 连接的代价非常高，
         //Connection 可以创建多个 Channel ，Channel 不是线程安全的所以不能在线程间共享。
-        using (var channel = _persistentConnection.CreateModel())
+        using (var channel = _persistentConnection.CreateModelAsync())
         {
             channel.ExchangeDeclare(_exchangeName, "direct");
 
@@ -114,9 +114,9 @@ internal class RabbitMQEventBus : IEventBus, IDisposable
     private void SubsManagerEventRemoved(object? sender, string eventName)
     {
         if (!_persistentConnection.IsConnected) 
-            _persistentConnection.TryConnect();
+            _persistentConnection.TryConnectAsync();
 
-        using (var channel = _persistentConnection.CreateModel())
+        using (var channel = _persistentConnection.CreateModelAsync())
         {
             channel.QueueUnbind(_queueName,
                 _exchangeName,
@@ -142,7 +142,7 @@ internal class RabbitMQEventBus : IEventBus, IDisposable
         if (!containsKey)
         {
             if (!_persistentConnection.IsConnected)
-                _persistentConnection.TryConnect();
+                _persistentConnection.TryConnectAsync();
 
             _consumerChannel.QueueBind(_queueName,
                 _exchangeName,
@@ -192,9 +192,9 @@ internal class RabbitMQEventBus : IEventBus, IDisposable
     private IModel CreateConsumerChannel()
     {
         if (!_persistentConnection.IsConnected)
-            _persistentConnection.TryConnect();
+            _persistentConnection.TryConnectAsync();
 
-        var channel = _persistentConnection.CreateModel();
+        var channel = _persistentConnection.CreateModelAsync();
         channel.ExchangeDeclare(_exchangeName,
             "direct");
 

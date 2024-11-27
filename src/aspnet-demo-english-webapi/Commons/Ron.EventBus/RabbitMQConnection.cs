@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -21,12 +22,14 @@ internal class RabbitMQConnection
 
     public bool IsConnected => _connection is { IsOpen: true } && !_disposed;
 
-    public IModel CreateModel()
+    public  async Task<IChannel> CreateModelAsync()
     {
         if (!IsConnected)
             throw new InvalidOperationException("No RabbitMQ connections are available to perform this action");
 
-        return _connection.CreateModel();
+        var connection = await _connectionFactory.CreateConnectionAsync();
+        var channel = await connection.CreateChannelAsync();
+        return channel;
     }
 
     public void Dispose()
@@ -36,39 +39,27 @@ internal class RabbitMQConnection
         _connection.Dispose();
     }
 
-    public bool TryConnect()
+    public async Task<bool> TryConnectAsync()
     {
-        lock (sync_root)
-        {
-            _connection = _connectionFactory.CreateConnection();
-
-            if (IsConnected)
-            {
-                _connection.ConnectionShutdown += OnConnectionShutdown;
-                _connection.CallbackException += OnCallbackException;
-                _connection.ConnectionBlocked += OnConnectionBlocked;
-                return true;
-            }
-
-            return false;
-        }
+        _connection = await _connectionFactory.CreateConnectionAsync();
+        _connection.ConnectionShutdownAsync += _connection_ConnectionShutdownAsync;
+        _connection.ConnectionUnblockedAsync += _connection_ConnectionUnblockedAsync;
+        _connection.ConnectionBlockedAsync += _connection_ConnectionBlockedAsync;
+        return true;
     }
 
-    private void OnConnectionBlocked(object sender, ConnectionBlockedEventArgs e)
+    private Task _connection_ConnectionBlockedAsync(object sender, ConnectionBlockedEventArgs @event)
     {
-        if (_disposed) return;
-        TryConnect();
+        throw new NotImplementedException();
     }
 
-    private void OnCallbackException(object sender, CallbackExceptionEventArgs e)
+    private Task _connection_ConnectionUnblockedAsync(object sender, AsyncEventArgs @event)
     {
-        if (_disposed) return;
-        TryConnect();
+        throw new NotImplementedException();
     }
 
-    private void OnConnectionShutdown(object sender, ShutdownEventArgs reason)
+    private async Task _connection_ConnectionShutdownAsync(object sender, ShutdownEventArgs @event)
     {
-        if (_disposed) return;
-        TryConnect();
+        throw new NotImplementedException();
     }
 }
